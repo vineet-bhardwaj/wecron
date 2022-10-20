@@ -1,0 +1,8 @@
+# Url will print static html.
+wecron.content:
+  path: '/api/v1/html/{viewname1}/{viewname2}/{pagename}'
+  defaults:
+    _controller: '\Drupal\wecron\Controller\DefaultController::get_render_html'
+    _title: 'api'
+  requirements:
+    _permission: 'access content'

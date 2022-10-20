@@ -1,0 +1,159 @@
+<?php
+
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\file\Entity\File;
+use Drupal\views\Views;
+use Algolia\AlgoliaSearch\SearchClient;
+
+ini_set('memory_limit', '2048M');
+
+/*
+ * Map all the theme files here.
+ */
+function we_api_theme($existing, $type, $theme, $path)
+{
+
+    return [
+        'view-featured-grid-homepage' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-key-focus-homepage' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-media-homepage' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-fellows-homepage' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-layouttwo-homepage' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-carousel-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-publication-homepage' => [
+            'variables' => ['items' => [], 'publication' => [], 'title' => ''],
+        ],
+        'view-taxonomy-policyed-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-taxonomy-topic-research' => [
+            'variables' => ['items' => [], 'publication' => [], 'title' => ''],
+        ],
+        'view-institution-press-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-media-video-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-media-audio-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-published-scholarship-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-periodicals-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-institutional-priorities-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-email-newsletter-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-research-teams-fellow' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-latest-news-about' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-taxonomy-profiletype-about' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-carousel-hooverdc' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-svg-component' => [
+            'variables' => ['svg' => [], 'title' => ''],
+        ],
+        'view-taxonomy-keyfocus-landing' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-taxonomy-keyfocus-detail' => [
+            'variables' => ['items' => [], 'termnname' => [], 'title' => ''],
+        ],
+        'view-featured-carousel-news' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-carousel-events' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-leaders-grid-leadership' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-taxonomy-topic-landing' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-content-topic' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-taxonomy-keyfocus-research' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-featured-research-publishedworkbyfellows' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-initiative-research-team' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-active-research-team' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-inactive-research-team' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-program-research-team' => [
+            'variables' => ['items' => [], 'title' => ''],
+        ],
+        'view-commentary-type' => [
+            'variables' => ['tid' => [], 'title' => '', 'name' => '', 'load' => []],
+        ],
+        'view-research-type' => [
+            'variables' => ['tid' => [], 'title' => '', 'name' => '', 'load' => []],
+        ],
+        'view-commentary-focus' => [
+            'variables' => ['tid' => [], 'title' => '', 'name' => '', 'load' => []],
+        ],
+
+    ];
+}
+/*
+ * Implement hook_cron
+ */
+function we_api_cron()
+{
+    $queue10 = \Drupal::queue('default_queue');
+    $queue10->createItem(1);
+    /* Research */
+    $queue11 = \Drupal::queue('research_queue');
+    $queue11->createItem(1);
+    /* Fellow */
+    $queue12 = \Drupal::queue('fellow_queue');
+    $queue12->createItem(1);
+    /* About / About our fellows */
+    $queue13 = \Drupal::queue('about_queue');
+    $queue13->createItem(1);
+    /* Hoover DC */
+    $queue14 = \Drupal::queue('dc_queue');
+    $queue14->createItem(1);
+    /* Key Focus area */
+    $queue15 = \Drupal::queue('key_focus_queue');
+    $queue15->createItem(1);
+    /* News */
+    $queue16 = \Drupal::queue('news_queue');
+    $queue16->createItem(1);
+    /* Events */
+    $queue17 = \Drupal::queue('event_queue');
+    $queue17->createItem(1);
+}

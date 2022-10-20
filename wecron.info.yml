@@ -1,0 +1,5 @@
+name: Wecron
+type: module
+description: 'Use this module to generate static html files using cron api.'
+core_version_requirement: ^8.8 || ^9
+version: 1.0
