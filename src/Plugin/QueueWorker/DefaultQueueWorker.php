@@ -28,8 +28,8 @@ class DefaultQueueWorker extends QueueWorkerBase
      */
     public function processItem($id)
     {
-
         $wereference = new WereferenceController;
+        /* Static node id's */
         $node_ids = [107, 170, 195, 243, 324, 355, 387, 304];
         foreach ($node_ids as $id) {
             $items = $wereference->we_get_view($id);
@@ -39,7 +39,7 @@ class DefaultQueueWorker extends QueueWorkerBase
             $current_time = \Drupal::time()->getCurrentTime();
             $fix_time = \Drupal::service('date.formatter')->format($current_time, 'custom', 'H');
             $int_time = (int)$fix_time;
-            $time_string = '<!-- Time Run 210000' . $fix_time . ' -->';
+            $time_string = '<!-- Time Run ' . $fix_time . ' -->';
             $min = 1;
             $max = 6;
 
